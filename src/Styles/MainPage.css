@@ -1,0 +1,17 @@
+body{
+  font-family: Outfit, sans-serif;
+  background: rgba(9, 18, 44, 1);
+  margin-bottom: 2000px;
+}
+
+.main-page-container{
+  display: flex;
+  flex-direction: column;
+}
+
+.back{
+  position: absolute;
+  width: 1520px;
+  z-index: 0;
+  height: 2800px;
+}
