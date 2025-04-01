@@ -11,7 +11,7 @@ body{
 
 .back{
   position: absolute;
-  width: 1520px;
+  width: 100%;
   z-index: 0;
   height: 2800px;
 }

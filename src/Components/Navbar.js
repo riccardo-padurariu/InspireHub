@@ -1,6 +1,7 @@
 import React from "react";
 import '../Styles/Navbar.css';
 import logo from '../Assets/LOGO 2.png';
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -15,8 +16,8 @@ export default function Navbar() {
           <p className="section">Contact</p>
         </div>
         <div className="user-buttons">
-          <p className="login-button">Login</p>
-          <button className="register-button">Sign up</button>
+          <Link to={'/login'}><p className="login-button">Login</p></Link>
+          <Link to={'/register'}><button className="register-button">Sign up</button></Link>
         </div>
       </div>
     </div>
