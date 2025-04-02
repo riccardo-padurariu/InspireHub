@@ -1,0 +1,37 @@
+.dashboard-container{
+  display: flex;
+  flex-direction: row;
+}
+
+.features-dash{
+  border: 1px solid;
+  width: 1163px;
+  height: 640px;
+  margin-top: 15px;
+  padding: 15px;
+  border-color: #BE3144;
+  border-radius: 10px;
+  background-color: #09122C4D;
+}
+
+.quote-container{
+  position: relative;
+  padding: 19px 23px;
+  background: linear-gradient(180deg, #BE3144 0%, #872341 100%);
+  border-radius: 10px;
+  width: 644px ;
+}
+
+.quote-title{
+  margin: 0;
+  font-size: 36px;
+  font-weight: 600;
+  color: white;
+}
+
+.quote-description{
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+  width: 630px;
+}

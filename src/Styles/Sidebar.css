@@ -101,5 +101,6 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  background: linear-gradient(90deg, #244CA2 0%, #872341 75%);
 }
 

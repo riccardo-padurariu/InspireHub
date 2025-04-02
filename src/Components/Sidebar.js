@@ -9,6 +9,7 @@ import comm from '../Assets/fluent_people-community-12-filled.svg';
 import ai from '../Assets/mingcute_ai-fill.svg';
 import sett from '../Assets/material-symbols_settings-rounded.svg';
 import stats from '../Assets/uil_statistics.svg';
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
 
@@ -16,7 +17,7 @@ export default function Sidebar() {
 
   return (
     <div className="sidebar-container">
-      <img className="logo-dash" src={logo}></img>
+      <Link to={'/home'}><img className="logo-dash" src={logo}></img></Link>
       <div className="pfp">
         <img className="pfp-img" src={pfp}></img>
         <div className="infos">

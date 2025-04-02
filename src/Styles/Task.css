@@ -1,0 +1,57 @@
+.task-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 610px;
+  border: 1px solid;
+  padding: 5px;
+  border-color: #BE3144;
+  border-radius: 10px;
+}
+
+.task-info{
+  margin-left: 15px;
+  width: 400px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.task-attribute{
+  margin: 0;
+}
+
+.date{
+  margin-left: 10px;
+}
+
+.task-name{
+  margin-left: 52px;
+}
+
+.edit-button{
+  padding: 7px 25px;
+  font-family: Outfit;
+  font-size: 13px;
+  background-color: #244CA1;
+  font-weight: 600;
+  border-radius: 6px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.delete-button{
+  padding: 7px 25px;
+  font-family: Outfit;
+  font-size: 13px;
+  font-weight: 600;
+  background-color: #BE3144;
+  border-radius: 6px;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-left: 7px;
+}

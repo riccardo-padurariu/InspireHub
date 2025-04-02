@@ -19,7 +19,7 @@ export default function Navbar() {
           <img src={logo}></img>
         </div>
         <div className="sections">
-          <p className="section">Home</p>
+          <p className="section">{userLoggedIn ? <Link to={'/dashboard'}>Dashboard</Link> : <Link to={'/home'}>Home</Link>}</p>
           <p className="section">Our mission</p>
           <p className="section">Contact</p>
         </div>
