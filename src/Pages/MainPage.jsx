@@ -12,8 +12,8 @@ import { useAuth } from "../Authentification/AuthContext";
 
 export default function MainPage(){
 
-  //const { currUser } = useAuth();
-  //console.log(currUser);
+  const { currentUser } = useAuth();
+  console.log(currentUser);
 
   return (
     <div className="main-page-container">

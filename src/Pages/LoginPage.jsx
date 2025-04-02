@@ -18,7 +18,6 @@ export default function LoginPage() {
   const [errorMessage, setErrorMessage] = React.useState('')
 
   const { userLoggedIn } = useAuth()
-  console.log(useAuth());
 
   const onSubmit = async (e) => {
       e.preventDefault()
@@ -41,12 +40,13 @@ export default function LoginPage() {
 
   return (
     <div className="login-container">
+      {userLoggedIn && <Navigate to="/home" />}
       <img src={back} style={{width: 100 + '%', position: 'absolute'}}></img>
       <form className="login-div" onSubmit={onSubmit}>
         <img className="logo" src={logo}></img>
         <p className="title-login">Log into your account</p>
         <div className="google-signin-div">
-          <button className="signin-with-google">
+          <button onClick={onGoogleSignIn} className="signin-with-google">
             <img src={google} className="google-icon"></img>
             Sign in with Google
           </button>

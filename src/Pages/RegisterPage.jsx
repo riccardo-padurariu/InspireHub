@@ -7,6 +7,10 @@ import { Link, Navigate } from "react-router-dom";
 import { doCreateUserWithEmailAndPassword } from "../Authentification/Auth";
 import { useAuth } from "../Authentification/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { updateUserDisplayName } from "../Authentification/AuthContext";
+import { doSignInWithGoogle } from "../Authentification/Auth";
+import { updateProfile } from "firebase/auth";
+
 
 export default function RegisterPage() {
 
@@ -17,32 +21,62 @@ export default function RegisterPage() {
   const [confirmPassword, setconfirmPassword] = React.useState('');
   const [isRegistering, setIsRegistering] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
+  const [fullName,setFullName] = React.useState('');
 
-  const userLogged  = useAuth();
+  const { userLoggedIn } = useAuth();
+  const { setCurrentUser } = useAuth();
 
   const onSubmit = async (e) => {
       e.preventDefault()
       if(!isRegistering) {
-          setIsRegistering(true);
-          await doCreateUserWithEmailAndPassword(email, password);
+        setIsRegistering(true);
+        try {
+            const userCredential = await doCreateUserWithEmailAndPassword(email, password);
+            await updateProfile(userCredential.user, {
+                displayName: fullName
+            });
+            setCurrentUser(userCredential.user);
+            navigation('/home');
+        } catch (error) {
+            setErrorMessage(error.message);
+            setIsRegistering(false);
+        }
       }
   }
 
+  const onGoogleSignIn = (e) => {
+        e.preventDefault()
+        if (!isRegistering) {
+            setIsRegistering(true)
+            doSignInWithGoogle().catch(err => {
+                setIsRegistering(false)
+            })
+        }
+    }
+
+    
+
+  console.log(fullName);
+
   return (
     <div className="login-container">
-
+      {userLoggedIn && <Navigate to="/home" />}
       <img src={back} style={{width: 100 + '%', position: 'absolute'}}></img>
       <form className="login-div" onSubmit={onSubmit}>
         <img className="logo" src={logo}></img>
         <p className="title-login">Create your account</p>
         <div className="google-signin-div">
-          <button className="signin-with-google">
-            <img src={google} className="google-icon"></img>
+          <button onClick={onGoogleSignIn} className="signin-with-google">
+            <img src={google}  className="google-icon"></img>
             Sign in with Google
           </button>
         </div>
         <p className="p-continue">or continue with email</p>
         <div className="data-input-flexbox">
+          <div className="data-input-div">
+            <p className="label">FULL NAME</p>
+            <input className="data-input" placeholder="Enter your full name" value={fullName} onChange={(e) => {setFullName(e.target.value)}}></input>
+          </div>
           <div className="data-input-div">
             <p className="label">EMAIL ADRESS</p>
             <input className="data-input" placeholder="your@email.com" value={email} onChange={(e) => {setEmail(e.target.value)}}></input>

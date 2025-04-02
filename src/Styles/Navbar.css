@@ -17,13 +17,14 @@ p{
 }
 
 .navbar-container{
+  position: fixed;
   z-index: 1000;
   display: flex;
   flex-direction: row;
-  padding: 0px 15px;
+  padding: 0px 25px;
   justify-content: space-between;
   margin-top: 30px;
-  width: 935px;
+  width: 1035px;
   height: 65px;
   align-items: center;
   border: 1px solid transparent;
@@ -66,4 +67,21 @@ p{
 
 .logo{
   margin-top: 20px;
+}
+
+.logout{
+  cursor: pointer;
+}
+
+.user-buttons-logged{
+  display: flex;
+  flex-direction: row;
+  width: 400px;
+  justify-content: space-evenly;
+}
+
+.user-greet{
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
 }

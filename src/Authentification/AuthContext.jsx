@@ -21,10 +21,12 @@ export function AuthProvider({ children }) {
     return unsubscribe;
   }, []);
 
+
   async function initializeUser(user) {
     if (user) {
 
       setCurrentUser({ ...user });
+      console.log(user.displayName);
 
       const isEmail = user.providerData.some(
         (provider) => provider.providerId === "password"
