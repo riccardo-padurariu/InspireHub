@@ -3,16 +3,17 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 610px;
+  width: 1040px;
   border: 1px solid;
   padding: 5px;
   border-color: #BE3144;
   border-radius: 10px;
+  margin-top: 5px;
 }
 
 .task-info{
   margin-left: 15px;
-  width: 400px;
+  width: 710px;
   display: flex;
   flex-direction: row;
   align-items: center;

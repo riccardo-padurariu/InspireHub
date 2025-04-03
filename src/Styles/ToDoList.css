@@ -1,9 +1,9 @@
 .todolist-container{
   position: relative;
   border: 1px solid;
-  width: 650px;
+  width: 1090px;
   height: 440px;
-  margin-top: 25px;
+  margin-top: 15px;
   padding: 20px;
   border-color: #BE3144;
   background: linear-gradient(180deg, rgba(190, 49, 68, 0.3) 0%, rgba(135, 35, 65, 0.3) 100%);
@@ -15,7 +15,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 400px;
+  width: 700px;
 }
 
 .section-todolist{
@@ -48,6 +48,6 @@
   border: 1px solid;
   border-radius: 10px;
   border-color: #BE3144;
-  width: 619px;
+  width: 1060px;
   height: 330px;
 }
