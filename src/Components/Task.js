@@ -11,6 +11,11 @@ export default function Task(props) {
 
   function editTask(){
     props.setIsAdding(true);
+    props.setTaskName(props.name);
+    props.setTaskDescription(props.description)
+    props.setTaskDate(props.dueDate)
+    props.setIsEditing(true);
+    props.setEditIndex(props.index);
   }
 
   return (

@@ -3,6 +3,7 @@ import '../Styles/ToDoList.css';
 import Task from "./Task";
 
 export default function ToDoList(props) {
+  
 
   const arr = props.taskList;
   let i = 1;
@@ -14,13 +15,26 @@ export default function ToDoList(props) {
     index = {i++}
     taskList = {props.taskList}
     setTaskList = {props.setTaskList}
+    setTaskName={props.setTaskName}
+    setTaskDescription={props.setTaskDescription}
+    setTaskDate={props.setTaskDate}
+    setIsEditing={props.setIsEditing}
+    setEditIndex={props.setEditIndex}
    />
   );
+
+  function setUpToAdd(){
+    props.setTaskName('');
+    props.setTaskDate('');
+    props.setTaskDescription('');
+    props.setIsAdding(true);
+    props.setIsEditing(false);
+  }
 
   return (
     <div className="todolist-container">
       <p className="todolist-title">Your daily goals</p>
-      <button className="addtask-button" onClick={() => props.setIsAdding(true)}>+ New Task</button>
+      <button className="addtask-button" onClick={setUpToAdd}>+ New Task</button>
       <div className="task-list-container">
         <div className="header-list">
           <p className="section-todolist">Number</p>

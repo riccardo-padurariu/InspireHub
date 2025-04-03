@@ -11,15 +11,43 @@ export default function Dashboard() {
   const [isAdding,setIsAdding] = React.useState(false);
   console.log(taskList);
 
+  const [taskName,setTaskName] = React.useState('');
+  const [taskDescription,setTaskDescription] = React.useState('');
+  const [taskDate,setTaskDate] = React.useState('');
+  const [isEditing,setIsEditing] = React.useState(false);
+  const [editIndex,setEditIndex] = React.useState(0);
+
   return (
     <div className="dashboard-container">
       <img className="back" src={back}></img>
       <Sidebar />
       <div className="features-dash">
         <Quote />
-        <ToDoList taskList={taskList} setIsAdding={setIsAdding} setTaskList={setTaskList}/>
+        <ToDoList
+          taskList={taskList} 
+          setIsAdding={setIsAdding} 
+          setTaskList={setTaskList}
+          setTaskName={setTaskName}
+          setTaskDescription={setTaskDescription}
+          setTaskDate={setTaskDate}
+          setIsEditing={setIsEditing}
+          setEditIndex={setEditIndex}
+         />
       </div>
-      <AddTaskModal setTaskList={setTaskList} isAdding={isAdding} setIsAdding={setIsAdding}/>
+      <AddTaskModal
+        taskList={taskList}
+        setTaskList={setTaskList} 
+        isAdding={isAdding} 
+        setIsAdding={setIsAdding}
+        setTaskName={setTaskName}
+        setTaskDescription={setTaskDescription}
+        setTaskDate={setTaskDate}
+        taskName={taskName}
+        taskDescription={taskDescription}
+        taskDate={taskDate}
+        isEditing={isEditing}
+        editIndex={editIndex}
+      />
     </div>
   );
 }
