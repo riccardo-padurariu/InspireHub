@@ -18,15 +18,58 @@ export default function Task(props) {
     props.setEditIndex(props.index);
   }
 
+  const completedStyle = {
+    padding: '7px 25px',
+    fontFamily: 'Outfit',
+    fontSize: '13px',
+    backgroundColor: '#0DCB46',
+    fontWeight: 600,
+    borderRadius: '6px',
+    color: 'white',
+    border: 'none',
+    cursor: 'pointer',
+    marginRight: '5px'
+  }
+  
+  const inProgressStyle = {
+    padding: '7px 25px',
+    fontFamily: 'Outfit',
+    fontSize: '13px',
+    backgroundColor: '#244CA1',
+    fontWeight: 600,
+    borderRadius: '6px',
+    color: 'white',
+    border: 'none',
+    cursor: 'pointer',
+    marginRight: '5px'
+  }
+
+  function completeTask() {
+    const arr = props.taskList;
+    arr[props.index-1].isCompleted = true;
+    props.setCompletedList(prevList => [...prevList,
+      props.index-1, 
+    ])
+  }
+
+  function undoTask() {
+    const arr = props.taskList;
+    arr[props.index-1].isCompleted = false;
+    const arrC = props.completedList;
+    const newArrC = arrC.filter((item,index) => item !== props.index-1)
+    props.setCompletedList(newArrC);
+  }
+
   return (
     <div className="task-container">
       <div className="task-info">
         <p className="task-attribute">{props.index}</p>
         <p className="task-attribute task-name">{props.name}</p>
         <p className="task-attribute date">{props.dueDate}</p>
-        <p className="task-attribute">In progress</p>
+        <p className="task-attribute">{props.isCompleted ? 'Completed' : 'In progress'}</p>
       </div>
       <div className="user-todolist-buttons">
+        <button className="complete-task-button" style={props.isCompleted ? completedStyle : inProgressStyle} onClick={props.isCompleted ? undoTask : completeTask}>{props.isCompleted ? 'Undo' : 'Complete'}</button>
         <button className="edit-button" onClick={editTask}>Edit</button>
         <button className="delete-button" onClick={deleteTask}>Delete</button>
       </div>

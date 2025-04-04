@@ -22,6 +22,19 @@ export default function Dashboard(props) {
   else
     document.body.style.overflow = "hidden";
 
+    //document.querySelector('.sidebar').style.height = window.innerHeight-255 + "px";
+    //document.querySelector('.todolist-container').style.height = window.innerHeight-263 + "px";
+    //document.querySelector('.features-dash').style.height = window.innerHeight-55 + "px";
+    //document.querySelector('.task-list-container').style.height = window.innerHeight-370 + "px";
+
+    window.addEventListener('resize', function() {
+      document.querySelector('.sidebar').style.height = window.innerHeight-255 + "px";
+      document.querySelector('.todolist-container').style.height = window.innerHeight-242 + "px";
+      document.querySelector('.features-dash').style.height = window.innerHeight-55 + "px";
+      document.querySelector('.task-list-container').style.height = window.innerHeight-445 + "px";
+      console.log(this.window.innerHeight);
+    });
+
   return (
     <div className="dashboard-container">
       <img className="back" src={back}></img>

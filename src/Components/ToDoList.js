@@ -3,7 +3,10 @@ import '../Styles/ToDoList.css';
 import Task from "./Task";
 
 export default function ToDoList(props) {
-  
+
+  const [completedList,setCompletedList] = React.useState([]);
+  const [indexC,setIndexC] = React.useState(0);
+
 
   const arr = props.taskList;
   let i = 1;
@@ -11,6 +14,7 @@ export default function ToDoList(props) {
     name = {item.name}
     description = {item.description}
     dueDate = {item.dueDate}
+    isCompleted = {item.isCompleted}
     setIsAdding = {props.setIsAdding}
     index = {i++}
     taskList = {props.taskList}
@@ -20,6 +24,8 @@ export default function ToDoList(props) {
     setTaskDate={props.setTaskDate}
     setIsEditing={props.setIsEditing}
     setEditIndex={props.setEditIndex}
+    completedList={completedList}
+    setCompletedList={setCompletedList}
    />
   );
 
@@ -31,9 +37,20 @@ export default function ToDoList(props) {
     props.setIsEditing(false);
   }
 
+
   return (
     <div className="todolist-container">
       <p className="todolist-title">Your daily goals</p>
+      <div className="progress-bar-div">
+        <div className="title-procent">
+          <p className="pb-title">Overall progress</p>
+          <p className="procent">{Math.round(completedList.length / props.taskList.length * 100)}%</p>
+        </div>
+        <div className="progress-bar-visual">
+
+        </div>
+        <p className="pb-stats">{completedList.length} of {props.taskList.length} completed</p>
+      </div>
       <button className="addtask-button" onClick={setUpToAdd}>+ New Task</button>
       <div className="task-list-container">
         <div className="header-list">

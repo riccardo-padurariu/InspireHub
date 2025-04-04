@@ -44,7 +44,8 @@ export default function AddTaskModal(props) {
       {
         name: props.taskName,
         description: props.taskDescription,
-        dueDate: String(props.taskDate)
+        dueDate: String(props.taskDate),
+        isCompleted: false
       }
     ]);
     props.setIsAdding(false);
@@ -59,7 +60,8 @@ export default function AddTaskModal(props) {
     arr[props.editIndex-1] = {
       name: props.taskName,
       description: props.description,
-      dueDate: String(props.taskDate)
+      dueDate: String(props.taskDate),
+      isCompleted: false
     }
     props.setIsAdding(false);
   }

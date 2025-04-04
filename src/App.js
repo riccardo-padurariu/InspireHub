@@ -16,8 +16,11 @@ function App() {
   //const { pathname } = location;
   //if(pathname)
   console.log(window.location.href);
+  console.log(document.body.style.overflow);
 
-  if(window.location.href === 'http://localhost:3000/home')
+  document.body.style.overflow = "";
+
+  if(window.location.href === 'http://localhost:3000/' || window.location.href === 'http://localhost:3000/home')
     document.body.style.overflow = "";
   else
     document.body.style.overflow = "hidden";
