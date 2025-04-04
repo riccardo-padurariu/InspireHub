@@ -38,13 +38,20 @@ export default function ToDoList(props) {
   }
 
 
+  let result = 0;
+
+  if(props.taskList.length > 0) 
+    result =  Math.round(completedList.length / props.taskList.length * 100) 
+  else
+    result = 0;
+
   return (
     <div className="todolist-container">
       <p className="todolist-title">Your daily goals</p>
       <div className="progress-bar-div">
         <div className="title-procent">
           <p className="pb-title">Overall progress</p>
-          <p className="procent">{Math.round(completedList.length / props.taskList.length * 100)}%</p>
+          <p className="procent">{result}%</p>
         </div>
         <div className="progress-bar-visual">
 

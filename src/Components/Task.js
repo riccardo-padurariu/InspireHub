@@ -5,8 +5,11 @@ export default function Task(props) {
 
   function deleteTask() {
     const arr = props.taskList;
+    const arrC = props.completedList;
     const newArr = arr.filter((item,index) => index != props.index-1);
+    const newArrC = arrC.filter((item,index) => item != props.index-1);
     props.setTaskList(newArr);
+    props.setCompletedList(newArrC);
   }
 
   function editTask(){
