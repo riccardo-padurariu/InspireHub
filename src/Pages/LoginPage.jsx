@@ -27,6 +27,11 @@ export default function LoginPage() {
       }
   }
 
+  if(window.location.href === 'http://localhost:3000/home')
+    document.body.style.overflow = "";
+  else
+    document.body.style.overflow = "hidden";
+
   const onGoogleSignIn = (e) => {
       e.preventDefault()
       if (!isSigningIn) {

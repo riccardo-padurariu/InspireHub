@@ -3,7 +3,7 @@
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  width: 1040px;
+  flex: 1;
   border: 1px solid;
   padding: 5px;
   border-color: #BE3144;
@@ -12,12 +12,12 @@
 }
 
 .task-info{
-  margin-left: 15px;
-  width: 710px;
+  margin-left: 5px;
+  flex: 1;  
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .task-attribute{

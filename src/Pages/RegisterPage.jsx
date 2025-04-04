@@ -26,6 +26,11 @@ export default function RegisterPage() {
   const { userLoggedIn } = useAuth();
   const { setCurrentUser } = useAuth();
 
+  if(window.location.href === 'http://localhost:3000/home')
+    document.body.style.overflow = "";
+  else
+    document.body.style.overflow = "hidden";
+
   const onSubmit = async (e) => {
       e.preventDefault()
       if(!isRegistering) {

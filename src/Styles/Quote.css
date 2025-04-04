@@ -6,6 +6,7 @@
 .quote-main-div{
   display: flex;
   flex-direction: row;
+  flex: 1;
 }
 
 .more-quotes-container{
@@ -16,6 +17,7 @@
   border-color: #BE3144;
   background: linear-gradient(180deg, rgba(190, 49, 68, 0.3) 0%, rgba(135, 35, 65, 0.3) 100%);
   border-radius: 10px;
+  flex: 1;
 }
 
 .more-quotes-title{
@@ -49,8 +51,7 @@
 
 .features-dash{
   border: 1px solid;
-  width: 1133px;
-  height: 640px;
+  flex: 1;
   margin-top: 15px;
   padding: 15px;
   border-color: #BE3144;
@@ -63,7 +64,7 @@
   padding: 19px 23px;
   background: linear-gradient(180deg, #BE3144 0%, #872341 100%);
   border-radius: 10px;
-  width: 644px ;
+  flex: 1;
 }
 
 .quote-title{
@@ -77,5 +78,4 @@
   font-size: 16px;
   font-weight: 400;
   color: white;
-  width: 630px;
 }

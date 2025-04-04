@@ -1,11 +1,17 @@
 .dashboard-container{
-  height: 100%; 
+  height: 100vh;
+  width: 100%;
 }
 
 
 .sidebar-container{
   position: relative;
   padding: 25px 21px;
+  height: 100vh;
+}
+
+.features-dash{
+  width: 100%;
 }
 
 .pfp{
@@ -58,8 +64,7 @@
 .sidebar{
   padding: 16px;
   border: 1px solid;
-  width: 269px;
-  height: 448px;
+  width: auto;
   background-color: #09122C4D;
   border-radius: 10px;
   border-color: #BE3144;

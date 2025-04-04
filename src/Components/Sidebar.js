@@ -11,9 +11,17 @@ import sett from '../Assets/material-symbols_settings-rounded.svg';
 import stats from '../Assets/uil_statistics.svg';
 import { Link } from "react-router-dom";
 
-export default function Sidebar() {
+export default function Sidebar(props) {
 
   const { currentUser } = useAuth();
+
+  window.addEventListener('resize', function() {
+    document.querySelector('.sidebar').style.height = window.innerHeight-255 + "px";
+    document.querySelector('.todolist-container').style.height = window.innerHeight-263 + "px";
+    document.querySelector('.features-dash').style.height = window.innerHeight-55 + "px";
+    document.querySelector('.task-list-container').style.height = window.innerHeight-370 + "px";
+    console.log(this.window.innerHeight);
+  });
 
   return (
     <div className="sidebar-container">

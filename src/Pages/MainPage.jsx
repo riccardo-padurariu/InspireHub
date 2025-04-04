@@ -10,15 +10,20 @@ import PoweredBy from "../Components/PoweredBy";
 import Footer from "../Components/Footer";
 import { useAuth } from "../Authentification/AuthContext";
 
-export default function MainPage(){
+export default function MainPage(props){
 
   const { currentUser } = useAuth();
   console.log(currentUser);
 
+  if(window.location.href === 'http://localhost:3000/home')
+    document.body.style.overflow = "";
+  else
+    document.body.style.overflow = "hidden";
+
   return (
     <div className="main-page-container">
       <img className="back" src={background}></img>
-      <Navbar />
+      <Navbar setNeedsOverflow={props.setNeedsOverflow} />
       <Title />
       <Carousel />
       <Reasons />

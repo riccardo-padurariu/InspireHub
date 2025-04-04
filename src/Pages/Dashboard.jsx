@@ -5,7 +5,7 @@ import Quote from "../Components/Quote";
 import ToDoList from "../Components/ToDoList";
 import AddTaskModal from "../Components/AddTaskModal";
 
-export default function Dashboard() {
+export default function Dashboard(props) {
 
   const [taskList,setTaskList] = React.useState([]);
   const [isAdding,setIsAdding] = React.useState(false);
@@ -17,10 +17,15 @@ export default function Dashboard() {
   const [isEditing,setIsEditing] = React.useState(false);
   const [editIndex,setEditIndex] = React.useState(0);
 
+  if(window.location.href === 'http://localhost:3000/home')
+    document.body.style.overflow = "";
+  else
+    document.body.style.overflow = "hidden";
+
   return (
     <div className="dashboard-container">
       <img className="back" src={back}></img>
-      <Sidebar />
+      <Sidebar setNeedsOverFlow={props.setNeedsOverFlow}/>
       <div className="features-dash">
         <Quote />
         <ToDoList
