@@ -15,7 +15,104 @@ export default function Sidebar(props) {
 
   const { currentUser } = useAuth();
 
-  
+  function setPage(path){
+    if(path === 'home'){
+      props.setPageSelector({
+        home: true,
+        challenges: false,
+        community: false,
+        aiChatbot: false,
+        setting: false
+      }) 
+    } else if(path === 'challenges'){
+      props.setPageSelector({
+        home: false,
+        challenges: true,
+        community: false,
+        aiChatbot: false,
+        setting: false
+      })
+    } else if(path === 'community'){
+      props.setPageSelector({
+        home: false,
+        challenges: false,
+        community: true,
+        aiChatbot: false,
+        setting: false
+      })
+    } else if(path === 'ai-chatbot'){
+      props.setPageSelector({
+        home: false,
+        challenges: false,
+        community: false,
+        aiChatbot: true,
+        setting: false
+      })
+    } else if(path === 'settings'){
+      props.setPageSelector({
+        home: false,
+        challenges: false,
+        community: false,
+        aiChatbot: false,
+        setting: true
+      })
+    }
+  }
+
+  const styleBoxNormal = {
+    padding: '3px 13px',
+    width: '211px',
+    height: '40px',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    border:'none',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    marginTop: '5px'
+  }
+
+  const styleBoxSelected = {
+    padding: '3px 13px',
+    width: '211px',
+    height: '40px',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    border:'1px solid',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    background: 'linear-gradient(90deg, rgba(190, 49, 68, 0) 0%, #872341 75%)',
+    borderColor: '#872341',
+    marginTop: '5px'
+  }
+
+  const stylePNormal = {
+    color: '#737373',
+    fontSize: '17px',
+    margin: 0
+  }
+
+  const stylePSelected = {
+    color: 'white',
+    fontSize: '17px',
+    margin: 0
+  }
+
+  function isSelected(path){
+    if(path === 'home'){
+      return props.pageSelector.home;
+    } else if(path === 'challenges'){
+      return props.pageSelector.challenges;
+    } else if(path === 'community'){
+      return props.pageSelector.community;
+    } else if(path === 'ai-chatbox'){
+      return props.pageSelector.aiChatbot;
+    } else if(path === 'settings'){
+      return props.pageSelector.setting;
+    }
+    return 0;
+  }
 
   return (
     <div className="sidebar-container">
@@ -33,27 +130,27 @@ export default function Sidebar(props) {
       </div>
       <div className="sidebar">
         <div className="sections-dash">
-          <div className="section-dash">
+          <div className="section-dash" style={isSelected('home') ? styleBoxSelected : styleBoxNormal} onClick={() => setPage('home')}>
             <img className="section-dash-img" src={home}></img>
-            <p className="section-p">Home</p>
+            <p className="section-p" style={isSelected('home') ? stylePSelected : stylePNormal}>Home</p>
           </div>
-          <div className="section-dash">
+          <div className="section-dash" style={isSelected('challenges') ? styleBoxSelected : styleBoxNormal} onClick={() => setPage('challenges')}>
             <img className="section-dash-img" src={ch}></img>
-            <p className="section-p">Challenges</p>
+            <p className="section-p" style={isSelected('challenges') ? stylePSelected : stylePNormal}>Challenges</p>
           </div>
-          <div className="section-dash">
+          <div className="section-dash" style={isSelected('community') ? styleBoxSelected : styleBoxNormal} onClick={() => setPage('community')}>
             <img className="section-dash-img" src={comm}></img>
-            <p className="section-p">Community</p>
+            <p className="section-p" style={isSelected('community') ? stylePSelected : stylePNormal}>Community</p>
           </div>
         </div>
         <div className="AI-settings">
-          <div className="section-dash-ai">
+          <div className="section-dash-ai" style={isSelected('ai-chatbot') ? styleBoxSelected : styleBoxNormal} onClick={() => setPage('ai-chatbot')}>
             <img className="section-dash-img" src={ai}></img>
-            <p className="section-p">AI Chatbot</p>
+            <p className="section-p" style={isSelected('ai-chatbot') ? stylePSelected : stylePNormal}>AI Chatbot</p>
           </div>
-          <div className="section-dash">
+          <div className="section-dash" style={isSelected('settings') ? styleBoxSelected : styleBoxNormal} onClick={() => setPage('settings')}>
             <img className="section-dash-img" src={sett}></img>
-            <p className="section-p">Settings</p>
+            <p className="section-p" style={isSelected('settings') ? stylePSelected : stylePNormal}>Settings</p>
           </div>
           <div className="copyright-dash">
             <p className="p1">Copyright &#169; 2025 InspireHub</p>

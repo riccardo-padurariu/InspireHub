@@ -14,6 +14,13 @@
   width: 100%;
 }
 
+.coming-soon{
+  font-size: 65px;
+  font-weight: 600;
+  text-align: center;
+  margin: -150px 0 100px 0;
+}
+
 .pfp{
   padding: 12px 30px;
   width: 241px;
@@ -74,7 +81,12 @@
   justify-content: space-between;
 }
 
-.section-dash{
+.secondary-div{
+  width: 100%;
+  justify-content: center;
+}
+
+/*.section-dash{
   padding: 3px 13px;
   width: 211px;
   height: 50px;
@@ -84,13 +96,13 @@
   border:none;
   border-radius: 6px;
   cursor: pointer;
-}
+}*/
 
-.section-p{
+/*.section-p{
   color: #737373;
   font-size: 17px;
   margin: 0;
-}
+}*/
 
 .section-dash-img{
   margin-right: 15px;

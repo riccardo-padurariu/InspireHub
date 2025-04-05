@@ -38,12 +38,16 @@ export default function ToDoList(props) {
   }
 
 
+  console.log(props.h1);  
+
   let result = 0;
 
   if(props.taskList.length > 0) 
     result =  Math.round(completedList.length / props.taskList.length * 100) 
   else
     result = 0;
+
+    console.log(completedList);
 
   return (
     <div className="todolist-container">
@@ -59,7 +63,7 @@ export default function ToDoList(props) {
         <p className="pb-stats">{completedList.length} of {props.taskList.length} completed</p>
       </div>
       <button className="addtask-button" onClick={setUpToAdd}>+ New Task</button>
-      <div className="task-list-container">
+      <div className="task-list-container" style={{height: window.innerHeight-445 + "px"}}>
         <div className="header-list">
           <p className="section-todolist">Number</p>
           <p className="section-todolist">Goal Name</p>

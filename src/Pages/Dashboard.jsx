@@ -16,6 +16,19 @@ export default function Dashboard(props) {
   const [taskDate,setTaskDate] = React.useState('');
   const [isEditing,setIsEditing] = React.useState(false);
   const [editIndex,setEditIndex] = React.useState(0);
+  const [pageSelector,setPageSelector] = React.useState({
+    home: true,
+    challenges: false,
+    community: false,
+    aiChatbot: false,
+    setting: false
+  })
+
+  let result;
+
+
+
+  
 
   if(window.location.href === 'http://localhost:3000/home')
     document.body.style.overflow = "";
@@ -27,18 +40,26 @@ export default function Dashboard(props) {
     //document.querySelector('.features-dash').style.height = window.innerHeight-55 + "px";
     //document.querySelector('.task-list-container').style.height = window.innerHeight-370 + "px";
 
+    //let result1 = pageSelector.home ? '.todolist-container' : '.secondary-div';
+    //let result2 = pageSelector.home ? '.task-list-container' : '.secondary-div';
+
+    let h1 = pageSelector.home ? 242 : 100;
+
     window.addEventListener('resize', function() {
       document.querySelector('.sidebar').style.height = window.innerHeight-255 + "px";
-      document.querySelector('.todolist-container').style.height = window.innerHeight-242 + "px";
+      document.querySelector('.todolist-container').style.height = window.innerHeight-h1 + "px";
       document.querySelector('.features-dash').style.height = window.innerHeight-55 + "px";
       document.querySelector('.task-list-container').style.height = window.innerHeight-445 + "px";
       console.log(this.window.innerHeight);
+     // h1 = window.innerHeight;
+      //console.log(h1);
     });
 
   return (
     <div className="dashboard-container">
       <img className="back" src={back}></img>
-      <Sidebar setNeedsOverFlow={props.setNeedsOverFlow}/>
+      <Sidebar setNeedsOverFlow={props.setNeedsOverFlow} setPageSelector={setPageSelector} pageSelector={pageSelector}/>
+      {pageSelector.home ? 
       <div className="features-dash">
         <Quote />
         <ToDoList
@@ -50,8 +71,47 @@ export default function Dashboard(props) {
           setTaskDate={setTaskDate}
           setIsEditing={setIsEditing}
           setEditIndex={setEditIndex}
+          h1 = {h1}
          />
       </div>
+      :
+      (pageSelector.challenges 
+        ? 
+        <div className="features-dash" style={{height: window.innerHeight-55 + "px"}}>
+          <div className="todolist-container">
+            <div className="task-list-container"></div>
+            <p className="coming-soon">Coming soon...</p>
+          </div>
+        </div>
+        :
+        (pageSelector.community
+          ?
+          <div className="features-dash" style={{height: window.innerHeight-55 + "px"}}>
+            <div className="todolist-container ">
+            <div className="task-list-container"></div>
+            <p className="coming-soon">Coming soon...</p>
+            </div>
+          </div>
+          :
+          (pageSelector.aiChatbot
+            ? 
+            <div className="features-dash" style={{height: window.innerHeight-55 + "px"}}>
+              <div className="todolist-container">
+              <div className="task-list-container"></div>
+              <p className="coming-soon">Coming soon...</p>
+              </div>
+            </div>
+            :
+            <div className="features-dash" style={{height: window.innerHeight-55 + "px"}}>
+              <div className="todolist-container">
+              <div className="task-list-container"></div>
+              <p className="coming-soon">Coming soon...</p>
+              </div>
+            </div>
+          )
+        )
+      )
+      }
       <AddTaskModal
         taskList={taskList}
         setTaskList={setTaskList} 
