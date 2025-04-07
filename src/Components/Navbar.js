@@ -19,7 +19,7 @@ export default function Navbar(props) {
           <img src={logo}></img>
         </div>
         <div className="sections">
-          <p className="section">{userLoggedIn ? <Link onClick={() => {props.setNeedsOverflow(true)}} to={'/dashboard'}>Dashboard</Link> : <Link to={'/home'}>Home</Link>}</p>
+          <p className="section">{userLoggedIn ? <Link onClick={() => {props.setNeedsOverflow(true)}} to={'/dashboard/tasks'}>Dashboard</Link> : <Link to={'/home'}>Home</Link>}</p>
           <p className="section">Our mission</p>
           <p className="section">Contact</p>
         </div>

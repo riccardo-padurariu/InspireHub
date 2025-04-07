@@ -4,12 +4,13 @@ import back from '../Assets/Background.svg';
 import Quote from "../Components/Quote";
 import ToDoList from "../Components/ToDoList";
 import AddTaskModal from "../Components/AddTaskModal";
+import { Database, getDatabase } from "firebase/database";
+import { ref,get } from "firebase/database";
 
-export default function Dashboard(props) {
+export default function ToDoListPage(props) {
 
   const [taskList,setTaskList] = React.useState([]);
   const [isAdding,setIsAdding] = React.useState(false);
-  console.log(taskList);
 
   const [taskName,setTaskName] = React.useState('');
   const [taskDescription,setTaskDescription] = React.useState('');
@@ -23,10 +24,6 @@ export default function Dashboard(props) {
     aiChatbot: false,
     setting: false
   })
-
-  let result;
-
-
 
   
 
@@ -42,15 +39,13 @@ export default function Dashboard(props) {
       document.querySelector('.todolist-container').style.height = window.innerHeight-h1 + "px";
       document.querySelector('.features-dash').style.height = window.innerHeight-55 + "px";
       document.querySelector('.task-list-container').style.height = window.innerHeight-445 + "px";
-      console.log(this.window.innerHeight);
     });
 
   return (
     <div className="dashboard-container">
       <img className="back" src={back}></img>
       <Sidebar setNeedsOverFlow={props.setNeedsOverFlow} setPageSelector={setPageSelector} pageSelector={pageSelector}/>
-      {pageSelector.home ? 
-      <div className="features-dash">
+      <div className="features-dash"> 
         <Quote />
         <ToDoList
           taskList={taskList} 
@@ -64,44 +59,6 @@ export default function Dashboard(props) {
           h1 = {h1}
          />
       </div>
-      :
-      (pageSelector.challenges 
-        ? 
-        <div className="features-dash" style={{height: window.innerHeight-55 + "px"}}>
-          <div className="todolist-container">
-            <div className="task-list-container"></div>
-            <p className="coming-soon">Coming soon...</p>
-          </div>
-        </div>
-        :
-        (pageSelector.community
-          ?
-          <div className="features-dash" style={{height: window.innerHeight-55 + "px"}}>
-            <div className="todolist-container ">
-            <div className="task-list-container"></div>
-            <p className="coming-soon">Coming soon...</p>
-            </div>
-          </div>
-          :
-          (pageSelector.setting
-            ? 
-            <div className="features-dash" style={{height: window.innerHeight-55 + "px"}}>
-              <div className="todolist-container">
-              <div className="task-list-container"></div>
-              <p className="coming-soon">Coming soon...</p>
-              </div>
-            </div>
-            :
-            <div className="features-dash" style={{height: window.innerHeight-55 + "px"}}>
-              <div className="todolist-container">
-              <div className="task-list-container"></div>
-              <p className="coming-soon">Coming soon...</p>
-              </div>
-            </div>
-          )
-        )
-      )
-      }
       <AddTaskModal
         taskList={taskList}
         setTaskList={setTaskList} 

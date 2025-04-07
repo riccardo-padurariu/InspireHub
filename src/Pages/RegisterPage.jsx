@@ -45,6 +45,7 @@ export default function RegisterPage() {
         } catch (error) {
             setErrorMessage(error.message);
             setIsRegistering(false);
+            console.log(error.message);
         }
       }
   }
@@ -71,7 +72,7 @@ export default function RegisterPage() {
         <img className="logo" src={logo}></img>
         <p className="title-login">Create your account</p>
         <div className="google-signin-div">
-          <button onClick={onGoogleSignIn} className="signin-with-google">
+          <button className="signin-with-google">
             <img src={google}  className="google-icon"></img>
             Sign in with Google
           </button>

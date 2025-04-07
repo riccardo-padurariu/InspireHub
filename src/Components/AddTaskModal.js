@@ -2,12 +2,15 @@ import React from "react";
 import '../Styles/AddTaskModal.css';
 import cross from '../Assets/material-symbols_close-rounded.svg';
 import backImg from '../Assets/Saly-26.svg';
+import { useAuth } from "../Authentification/AuthContext";
+import { Database, getDatabase } from "firebase/database";
+import { ref,get } from "firebase/database";
 
 export default function AddTaskModal(props) {
- 
-  //const [taskName,setTaskName] = React.useState('');
-  //const [taskDescription,setTaskDescription] = React.useState('');
-  //const [taskDate,setTaskDate] = React.useState('');
+
+  const { currentUser } = useAuth();
+
+  
 
   const styleOnAdding = {
     backdropFilter: 'blur(10px)',
@@ -35,9 +38,24 @@ export default function AddTaskModal(props) {
     justifyContent: 'center'
   }
 
-  console.log(props.taskDate);
-  console.log(props.taskDescription);
-  console.log(props.taskName);
+  const sendData = async (e) => {
+    const list = props.taskList;
+    //e.preventDefault();
+    const options = {
+      method: 'POST',
+      headers: {
+        'ContentType': 'application/json'
+      },
+      body: JSON.stringify({
+        list
+      })
+    }
+    const res = await fetch('https://inspirehub-3779f-default-rtdb.firebaseio.com/UserData.json',options);
+    if(res)
+      alert('message sent');
+    else
+      alert('error');
+  }
 
   function addTask(){
     props.setTaskList(oldArr => [...oldArr,
@@ -45,11 +63,17 @@ export default function AddTaskModal(props) {
         name: props.taskName,
         description: props.taskDescription,
         dueDate: String(props.taskDate),
-        isCompleted: false
+        isCompleted: false,
+        id: currentUser.displayName
       }
     ]);
-    props.setIsAdding(false);
 
+    console.log('list task: ');
+    console.log(props.taskList);
+
+    sendData();
+
+    props.setIsAdding(false);
     props.setTaskName('');
     props.setTaskDate('');
     props.setTaskDescription('');

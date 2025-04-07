@@ -7,16 +7,15 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import RegisterPage from './Pages/RegisterPage';
 import { AuthProvider } from './Authentification/AuthContext';
 import Dashboard from './Pages/Dashboard';
+import AiPage from './Pages/AiPage';
+import ToDoListPage from './Pages/ToDoListPage';
+import ChallengesPage from './Pages/ChallengesPage';
+import CommunityPage from './Pages/CommunityPage';
+import SettingsPage from './Pages/SettingsPage';
 
 function App() {
 
   const [needsOverflow,setNeedsOverflow] = React.useState(false);
-
-  //const location = useLocation();
-  //const { pathname } = location;
-  //if(pathname)
-  console.log(window.location.href);
-  console.log(document.body.style.overflow);
 
   document.body.style.overflow = "";
 
@@ -25,7 +24,6 @@ function App() {
   else
     document.body.style.overflow = "hidden";
 
-  //document.body.style.overflow = needsOverflow ? "hidden" : "";
 
 
   return (
@@ -38,6 +36,11 @@ function App() {
             <Route element = {<LoginPage needsOverflow={needsOverflow} setNeedsOverflow={setNeedsOverflow}/>} path='/login'></Route>
             <Route element = {<RegisterPage needsOverflow={needsOverflow} setNeedsOverflow={setNeedsOverflow}/>} path='/register'></Route>
             <Route element = {<Dashboard needsOverflow={needsOverflow} setNeedsOverflow={setNeedsOverflow}/>} path='/dashboard'></Route>
+            <Route element = {<AiPage needsOverflow={needsOverflow} setNeedsOverflow={setNeedsOverflow}/>} path='/dashboard/ai'></Route>
+            <Route element = {<ToDoListPage needsOverflow={needsOverflow} setNeedsOverflow={setNeedsOverflow}/>} path='/dashboard/tasks'></Route>
+            <Route element = {<ChallengesPage needsOverflow={needsOverflow} setNeedsOverflow={setNeedsOverflow}/>} path='/dashboard/challenges'></Route>
+            <Route element = {<CommunityPage needsOverflow={needsOverflow} setNeedsOverflow={setNeedsOverflow}/>} path='/dashboard/community'></Route>
+            <Route element = {<SettingsPage needsOverflow={needsOverflow} setNeedsOverflow={setNeedsOverflow}/>} path='/dashboard/settings'></Route>
           </Routes>
         </BrowserRouter>
       </div>    

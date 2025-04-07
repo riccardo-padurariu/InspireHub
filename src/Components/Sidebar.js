@@ -106,13 +106,29 @@ export default function Sidebar(props) {
       return props.pageSelector.challenges;
     } else if(path === 'community'){
       return props.pageSelector.community;
-    } else if(path === 'ai-chatbox'){
+    } else if(path === 'ai-chatbot'){
       return props.pageSelector.aiChatbot;
     } else if(path === 'settings'){
       return props.pageSelector.setting;
     }
     return 0;
   }
+
+  function changePage(path) {
+    if(path === 'home'){
+      window.location = '/dashboard/tasks';
+    } else if(path === 'challenges'){
+      window.location = '/dashboard/challenges'
+    } else if(path === 'community'){
+      window.location = '/dashboard/community'
+    } else if(path === 'ai-chatbot'){
+      window.location = '/dashboard/ai'
+    } else if(path === 'settings'){
+      window.location = '/dashboard/settings'
+    }
+    setPage(path);
+  }
+
 
   return (
     <div className="sidebar-container">
@@ -130,27 +146,27 @@ export default function Sidebar(props) {
       </div>
       <div className="sidebar">
         <div className="sections-dash">
-          <div className="section-dash" style={isSelected('home') ? styleBoxSelected : styleBoxNormal} onClick={() => setPage('home')}>
+          <div className="section-dash" style={window.location.pathname === '/dashboard/tasks' ? styleBoxSelected : styleBoxNormal} onClick={() => changePage('home')}>
             <img className="section-dash-img" src={home}></img>
-            <p className="section-p" style={isSelected('home') ? stylePSelected : stylePNormal}>Home</p>
+            <p className="section-p" style={window.location.pathname === '/dashboard/tasks' ? stylePSelected : stylePNormal}>Home</p>
           </div>
-          <div className="section-dash" style={isSelected('challenges') ? styleBoxSelected : styleBoxNormal} onClick={() => setPage('challenges')}>
+          <div className="section-dash" style={window.location.pathname === '/dashboard/challenges' ? styleBoxSelected : styleBoxNormal} onClick={() => changePage('challenges')}>
             <img className="section-dash-img" src={ch}></img>
-            <p className="section-p" style={isSelected('challenges') ? stylePSelected : stylePNormal}>Challenges</p>
+            <p className="section-p" style={window.location.pathname === '/dashboard/challenges' ? stylePSelected : stylePNormal}>Challenges</p>
           </div>
-          <div className="section-dash" style={isSelected('community') ? styleBoxSelected : styleBoxNormal} onClick={() => setPage('community')}>
+          <div className="section-dash" style={window.location.pathname === '/dashboard/community' ? styleBoxSelected : styleBoxNormal} onClick={() => changePage('community')}>
             <img className="section-dash-img" src={comm}></img>
-            <p className="section-p" style={isSelected('community') ? stylePSelected : stylePNormal}>Community</p>
+            <p className="section-p" style={window.location.pathname === '/dashboard/community' ? stylePSelected : stylePNormal}>Community</p>
           </div>
         </div>
         <div className="AI-settings">
-          <div className="section-dash-ai" style={isSelected('ai-chatbot') ? styleBoxSelected : styleBoxNormal} onClick={() => setPage('ai-chatbot')}>
+          <div className="section-dash-ai" style={styleBoxNormal} onClick={() => changePage('ai-chatbot')}>
             <img className="section-dash-img" src={ai}></img>
-            <p className="section-p" style={isSelected('ai-chatbot') ? stylePSelected : stylePNormal}>AI Chatbot</p>
+            <p className="section-p" style={window.location.pathname === '/dashboard/ai' ? stylePSelected : stylePNormal}>AI Chatbot</p>
           </div>
-          <div className="section-dash" style={isSelected('settings') ? styleBoxSelected : styleBoxNormal} onClick={() => setPage('settings')}>
+          <div className="section-dash" style={window.location.pathname === '/dashboard/settings' ? styleBoxSelected : styleBoxNormal} onClick={() => changePage('settings')}>
             <img className="section-dash-img" src={sett}></img>
-            <p className="section-p" style={isSelected('settings') ? stylePSelected : stylePNormal}>Settings</p>
+            <p className="section-p" style={window.location.pathname === '/dashboard/settings' ? stylePSelected : stylePNormal}>Settings</p>
           </div>
           <div className="copyright-dash">
             <p className="p1">Copyright &#169; 2025 InspireHub</p>

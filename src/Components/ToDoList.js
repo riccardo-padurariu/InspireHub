@@ -1,12 +1,27 @@
 import React from "react";
 import '../Styles/ToDoList.css';
 import Task from "./Task";
+import { Database, getDatabase } from "firebase/database";
+import { ref,get } from "firebase/database";
 
 export default function ToDoList(props) {
 
   const [completedList,setCompletedList] = React.useState([]);
   const [indexC,setIndexC] = React.useState(0);
 
+
+  const fetchData = async () => {
+    const db = getDatabase();
+    const dbRef = ref(db,'UserData');
+    const snapshot = await get(dbRef);
+    if(snapshot.exists){
+      const arr = Object.values(snapshot.val());
+    }else{
+      alert('error');
+    }
+  }
+
+  fetchData();
 
   const arr = props.taskList;
   let i = 1;
@@ -38,7 +53,6 @@ export default function ToDoList(props) {
   }
 
 
-  console.log(props.h1);  
 
   let result = 0;
 
@@ -47,7 +61,6 @@ export default function ToDoList(props) {
   else
     result = 0;
 
-    console.log(completedList);
 
   return (
     <div className="todolist-container">
