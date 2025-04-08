@@ -43,6 +43,10 @@ export default function AiChatBot() {
     }
   }
 
+  window.addEventListener('resize',() => {
+    document.querySelector('.chatbot-container').style.height = window.innerHeight - 265 + 'px';
+  })
+
   return(
     <div className="chatbot-container">
       <div className="chat-body">

@@ -76,7 +76,7 @@ export default function ToDoList(props) {
         <p className="pb-stats">{completedList.length} of {props.taskList.length} completed</p>
       </div>
       <button className="addtask-button" onClick={setUpToAdd}>+ New Task</button>
-      <div className="task-list-container" style={{height: window.innerHeight-445 + "px"}}>
+      <div className="task-list-container" style={{height: window.innerHeight-445 + "px", overflow: "auto"}}>
         <div className="header-list">
           <p className="section-todolist">Number</p>
           <p className="section-todolist">Goal Name</p>
