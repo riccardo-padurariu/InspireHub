@@ -1,7 +1,7 @@
 import React from "react";
 import '../Styles/Register.css';
 import back from '../Assets/Background.svg';
-import logo from '../Assets/LOGO 2.png';
+import logo from '../Assets/LOGO 1.svg';
 import google from '../Assets/flat-color-icons_google.svg';
 import { Link, Navigate } from "react-router-dom";
 import { doCreateUserWithEmailAndPassword } from "../Authentification/Auth";
@@ -66,7 +66,7 @@ export default function RegisterPage() {
 
   return (
     <div className="login-container">
-      {userLoggedIn && <Navigate to="/home" />}
+      {userLoggedIn && <Navigate to="/dashboard/tasks" />}
       <img src={back} style={{width: 100 + '%', position: 'absolute'}}></img>
       <form className="login-div" onSubmit={onSubmit}>
         <img className="logo" src={logo}></img>

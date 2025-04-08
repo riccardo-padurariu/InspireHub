@@ -9,6 +9,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 140px;
+  position: relative;
 }
 
 .prototype-now-button{
@@ -70,7 +71,7 @@
   height: 40px;
   margin-left: 20px;
   border-radius: 10px;
-  background: #09122C;
+  background: transparent;
   border: 1px solid;
   border-color: #BE3144;
   color: white;

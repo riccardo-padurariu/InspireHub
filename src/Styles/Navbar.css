@@ -44,12 +44,16 @@ p{
 .section{
   font-size: 16px;
   cursor: pointer;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-family: Outfit;
 }
 
 .user-buttons{
   display: flex;
   flex-direction: row;
-  width: 150px;
+  width: 220px;
   justify-content: space-between;
   align-items: center;
 }
@@ -76,7 +80,7 @@ p{
 .user-buttons-logged{
   display: flex;
   flex-direction: row;
-  width: 400px;
+  width: 270px;
   justify-content: space-evenly;
 }
 

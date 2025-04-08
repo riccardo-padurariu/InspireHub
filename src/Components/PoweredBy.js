@@ -1,7 +1,7 @@
 import React from "react";
 import '../Styles/PoweredBy.css';
 import logo1 from '../Assets/Figma.png';
-import logo2 from '../Assets/OPENAI.png';
+import logo2 from '../Assets/Vector (5).svg';
 import logo3 from '../Assets/Firebase.png';
 import logo4 from '../Assets/React.png';
 

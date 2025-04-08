@@ -13,7 +13,6 @@ import { useAuth } from "../Authentification/AuthContext";
 export default function MainPage(props){
 
   const { currentUser } = useAuth();
-  console.log(currentUser);
 
   if(window.location.href === 'http://localhost:3000/home')
     document.body.style.overflow = "";

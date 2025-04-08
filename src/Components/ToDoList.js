@@ -3,6 +3,7 @@ import '../Styles/ToDoList.css';
 import Task from "./Task";
 import { Database, getDatabase } from "firebase/database";
 import { ref,get } from "firebase/database";
+import ProgressBar from "./ProgressBar";
 
 export default function ToDoList(props) {
 
@@ -70,9 +71,7 @@ export default function ToDoList(props) {
           <p className="pb-title">Overall progress</p>
           <p className="procent">{result}%</p>
         </div>
-        <div className="progress-bar-visual">
-
-        </div>
+        <ProgressBar checked={completedList.length} total={props.taskList.length}/>
         <p className="pb-stats">{completedList.length} of {props.taskList.length} completed</p>
       </div>
       <button className="addtask-button" onClick={setUpToAdd}>+ New Task</button>

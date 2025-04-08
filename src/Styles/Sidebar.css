@@ -36,6 +36,18 @@
   margin-top: 5px;
 }
 
+.logout{
+  margin: 0;
+  background-color: white;
+  width: 50px;
+  padding: 5px;
+  color: #872341;
+  border-radius: 5px;
+  margin-top: 5px;
+  align-items: center;
+  font-size: 16px;
+}
+
 .streak-div{
   display: flex;
   flex-direction: row;

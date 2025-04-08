@@ -10,7 +10,6 @@ export default function Navbar(props) {
   
   const navigate = useNavigate();
   const { userLoggedIn, currentUser } = useAuth();
-  console.log(currentUser);
   
   return (
     <div className="nav-main">
@@ -19,18 +18,17 @@ export default function Navbar(props) {
           <img src={logo}></img>
         </div>
         <div className="sections">
-          <p className="section">{userLoggedIn ? <Link onClick={() => {props.setNeedsOverflow(true)}} to={'/dashboard/tasks'}>Dashboard</Link> : <Link to={'/home'}>Home</Link>}</p>
+          <p className="section">Home</p>
           <p className="section">Our mission</p>
           <p className="section">Contact</p>
         </div>
         {userLoggedIn ? 
         <div className="user-buttons-logged">
-          <p className="logout" onClick={() => { doSignOut().then(() => { navigate('/login') })}}>Logout</p>
           <p className="user-greet">Welcome back, {currentUser.displayName}</p>
         </div>
         :
         <div className="user-buttons">
-          <Link to={'/login'}><p className="login-button">Login</p></Link>
+          <Link to={'/login'}><button className="login-button">Login</button></Link>
           <Link to={'/register'}><button className="register-button">Sign up</button></Link>
         </div>}
       </div>

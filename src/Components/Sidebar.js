@@ -10,10 +10,22 @@ import ai from '../Assets/mingcute_ai-fill.svg';
 import sett from '../Assets/material-symbols_settings-rounded.svg';
 import stats from '../Assets/uil_statistics.svg';
 import { Link } from "react-router-dom";
+import homeNormal from '../Assets/gravity-ui_house (1).svg';
+import chNormal from '../Assets/Vector (1).svg';
+import commNormal from '../Assets/Vector (2).svg';
+import aiNormal from '../Assets/Vector (3).svg';
+import settNormal from '../Assets/Vector (4).svg';
+import { doSignOut } from "../Authentification/Auth";
+import { useNavigate } from "react-router-dom";
+import line from '../Assets/Line 3.svg';
+
 
 export default function Sidebar(props) {
 
-  const { currentUser } = useAuth();
+  const { currentUser,userLoggedIn } = useAuth();
+
+  const navigate = useNavigate();
+
 
   function setPage(path){
     if(path === 'home'){
@@ -136,38 +148,40 @@ export default function Sidebar(props) {
       <div className="pfp">
         <img className="pfp-img" src={pfp}></img>
         <div className="infos">
-          <p className="greet-dash">Welcome back, {currentUser.displayName}!</p>
-          <p className="greet-email">{currentUser.email}</p>
-          <div className="streak-div">
+          <p className="greet-dash">Welcome back, {userLoggedIn ? currentUser.displayName : ''}!</p>
+          <p className="greet-email">{userLoggedIn ? currentUser.email : ''}</p>
+          {/*<div className="streak-div">
             <img className="streak-img" src={stats}></img>
             <p className="streak-num">123 days</p>
-          </div>
+          </div>*/}
+          <p className="logout" onClick={() => { /*doSignOut().then(() => { window.location = '/login'; })*/ window.location = '/login'; doSignOut()}}>Logout</p>
         </div>
       </div>
       <div className="sidebar">
         <div className="sections-dash">
           <div className="section-dash" style={window.location.pathname === '/dashboard/tasks' ? styleBoxSelected : styleBoxNormal} onClick={() => changePage('home')}>
-            <img className="section-dash-img" src={home}></img>
+            <img className="section-dash-img" src={window.location.pathname === '/dashboard/tasks' ? home : homeNormal}></img>
             <p className="section-p" style={window.location.pathname === '/dashboard/tasks' ? stylePSelected : stylePNormal}>Home</p>
           </div>
           <div className="section-dash" style={window.location.pathname === '/dashboard/challenges' ? styleBoxSelected : styleBoxNormal} onClick={() => changePage('challenges')}>
-            <img className="section-dash-img" src={ch}></img>
+            <img className="section-dash-img" src={window.location.pathname === '/dashboard/challenges' ? chNormal : ch}></img>
             <p className="section-p" style={window.location.pathname === '/dashboard/challenges' ? stylePSelected : stylePNormal}>Challenges</p>
           </div>
           <div className="section-dash" style={window.location.pathname === '/dashboard/community' ? styleBoxSelected : styleBoxNormal} onClick={() => changePage('community')}>
-            <img className="section-dash-img" src={comm}></img>
+            <img className="section-dash-img" src={window.location.pathname === '/dashboard/community' ? commNormal : comm}></img>
             <p className="section-p" style={window.location.pathname === '/dashboard/community' ? stylePSelected : stylePNormal}>Community</p>
           </div>
         </div>
         <div className="AI-settings">
           <div className="section-dash-ai" style={styleBoxNormal} onClick={() => changePage('ai-chatbot')}>
-            <img className="section-dash-img" src={ai}></img>
+            <img className="section-dash-img" src={window.location.pathname === '/dashboard/ai' ? ai : aiNormal}></img>
             <p className="section-p" style={window.location.pathname === '/dashboard/ai' ? stylePSelected : stylePNormal}>AI Chatbot</p>
           </div>
           <div className="section-dash" style={window.location.pathname === '/dashboard/settings' ? styleBoxSelected : styleBoxNormal} onClick={() => changePage('settings')}>
-            <img className="section-dash-img" src={sett}></img>
+            <img className="section-dash-img" src={window.location.pathname === '/dashboard/settings' ? settNormal : sett}></img>
             <p className="section-p" style={window.location.pathname === '/dashboard/settings' ? stylePSelected : stylePNormal}>Settings</p>
           </div>
+          <img src={line} style={{marginLeft: 20 + 'px',marginBottom: 10 + 'px'}}></img>
           <div className="copyright-dash">
             <p className="p1">Copyright &#169; 2025 InspireHub</p>
             <p className="p1">Prototype version 0x001</p>
