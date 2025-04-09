@@ -7,8 +7,12 @@ import ToDoList from "../Components/ToDoList";
 import AddTaskModal from "../Components/AddTaskModal";
 import AiIntro from "../Components/AiIntro";
 import AiChatBot from "../Components/AiChatBot";
+import AddFeedback from "../Components/AddFeedback";
 
 export default function AiPage(props){
+
+  const [isAddingFeedback,setIsAddingFeedback] = React.useState(false);
+  
 
   const [taskList,setTaskList] = React.useState([]);
   const [isAdding,setIsAdding] = React.useState(false);
@@ -27,21 +31,28 @@ export default function AiPage(props){
     setting: false
   })
 
+
+  
   let h1;
 
   window.addEventListener('resize', function() {
     document.querySelector('.sidebar').style.height = window.innerHeight-255 + "px";
     document.querySelector('.features-dash').style.height = window.innerHeight-55 + "px";
   });
+  
+  console.log(isAddingFeedback);
 
   return (
-    <div className="dashboard-container">
-      <img className="back" src={back}></img>
-      <Sidebar setNeedsOverFlow={props.setNeedsOverFlow} setPageSelector={setPageSelector} pageSelector={pageSelector}/>
-      <div className="features-dash">
-        <AiIntro />
-        <AiChatBot />
+    <div style={{display: 'flex',flexDirection: 'row'}}>
+      <div className="dashboard-container">
+        <img className="back" src={back}></img>
+        <Sidebar setNeedsOverFlow={props.setNeedsOverFlow} setPageSelector={setPageSelector} pageSelector={pageSelector}/>
+        <div className="features-dash">
+          <AiIntro setIsAddingFeedback={setIsAddingFeedback} />
+          <AiChatBot />
+        </div>
       </div>
+      <AddFeedback setIsAddingFeedback={setIsAddingFeedback} isAddingFeedback={isAddingFeedback}/>
     </div>
   );
 }

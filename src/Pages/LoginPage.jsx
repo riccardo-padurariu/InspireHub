@@ -8,22 +8,45 @@ import { useAuth } from "../Authentification/AuthContext";
 import { doSignInWithEmailAndPassword } from "../Authentification/Auth";
 import { doSignInWithGoogle } from "../Authentification/Auth";
 import { getAuth } from "firebase/auth";
+import PopUpNotification from "../Components/PopUpNotification";
 
 export default function LoginPage() {
   const navigation = useNavigate();
 
-  const [email, setEmail] = React.useState('')
-  const [password, setPassword] = React.useState('')
-  const [isSigningIn, setIsSigningIn] = React.useState(false)
-  const [errorMessage, setErrorMessage] = React.useState('')
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [isSigningIn, setIsSigningIn] = React.useState(false);
+  const [errorMessage, setErrorMessage] = React.useState('');
+  const [displayError,setDisplayError] = React.useState(false);
 
-  const { userLoggedIn } = useAuth()
+  const { userLoggedIn } = useAuth();
+
+  function getUserFriendlyError(error){
+    switch(error.code){
+      case "auth/invalid-email":
+        return "Invalid email.";
+      case "auth/wrong-password":
+        return "Incorrect password.";
+      case "auth/invalid-credential":
+        return "Incorrect password";
+      default:
+        return "Something went wrong...Please try again.";
+    }
+  }
 
   const onSubmit = async (e) => {
       e.preventDefault()
       if(!isSigningIn) {
-          setIsSigningIn(true)
-          await doSignInWithEmailAndPassword(email, password)
+          setIsSigningIn(true);
+          try{
+            await doSignInWithEmailAndPassword(email, password);
+            setDisplayError(false);
+          } catch(error){
+            setIsSigningIn(false);
+            setErrorMessage(getUserFriendlyError(error));
+            setDisplayError(true);
+            console.log(error.code);
+          }
       }
   }
 
@@ -35,10 +58,15 @@ export default function LoginPage() {
   const onGoogleSignIn = (e) => {
       e.preventDefault()
       if (!isSigningIn) {
-          setIsSigningIn(true)
-          doSignInWithGoogle().catch(err => {
-              setIsSigningIn(false)
-          })
+          setIsSigningIn(true);
+          try{
+            doSignInWithGoogle().catch(err => {
+                setIsSigningIn(false)
+            })
+          }catch(error){
+            console.log("Firebase error", error);
+            setIsSigningIn(false);
+          }
       }
   }
 
@@ -47,7 +75,8 @@ export default function LoginPage() {
     <div className="login-container">
       {userLoggedIn && <Navigate to="/dashboard/tasks" />}
       <img src={back} style={{width: 100 + '%', position: 'absolute'}}></img>
-      <form className="login-div" onSubmit={onSubmit}>
+      {displayError && <PopUpNotification role={'fail'} error={errorMessage} />}
+      <form className="login-div" style={{paddingTop: (displayError ? 60 : 120) + 'px'}} onSubmit={onSubmit}>
         <img className="logo" src={logo}></img>
         <p className="title-login">Log into your account</p>
         <div className="google-signin-div">

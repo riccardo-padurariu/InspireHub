@@ -4,7 +4,9 @@ import motivationalQuotes from "../QuotesData";
 
 export default function Quote() {
 
-  const randIndex = Math.floor(Math.random() * 100);
+  let randIndex = 0;
+
+  setInterval(() => randIndex = Math.floor(Math.random() * 100),8640000);
 
   return (
     <div className="quote-main-div">

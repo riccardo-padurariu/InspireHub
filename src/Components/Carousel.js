@@ -7,13 +7,22 @@ import motivationalQuotes from "../QuotesData";
 export default function Carousel() {
 
   let quotes = [];
-  for(let i=0;i<6;i++){
+
+  function randomize(){
+    for(let i=0;i<6;i++){
     const randIndex = Math.floor(Math.random() * 100);
     const t = motivationalQuotes[randIndex].quote;
     const a = motivationalQuotes[randIndex].author;
     const obj = {text: t, auth: a};
     quotes.push(obj);
+    }
   }
+
+  const date = new Date();
+  if(date.getHours() == 0);
+    randomize();
+
+  console.log(quotes);
 
   const [index,setIndex] = React.useState(0);
 

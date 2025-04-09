@@ -1,7 +1,7 @@
 import React from "react";
 import '../Styles/Quote.css';
 
-export default function AiIntro() {
+export default function AiIntro(props) {
 
   const aiStyle = {
     background: 'linear-gradient(90deg, #244CA1 0%, #872341 100%)'
@@ -17,7 +17,7 @@ export default function AiIntro() {
       <div className="more-quotes-container">
         <p className="more-quotes-title">Help Improve Astra!</p>
         <p className="more-quotes-description">Click below to share your thoughts and help us refine Astra for a better experience.</p>
-        <button className="more-quotes-button">Give Feedback</button>
+        <button className="more-quotes-button" onClick={() => props.setIsAddingFeedback(true)}>Give Feedback</button>
       </div>
     </div>
   );

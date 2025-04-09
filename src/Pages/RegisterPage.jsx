@@ -10,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import { updateUserDisplayName } from "../Authentification/AuthContext";
 import { doSignInWithGoogle } from "../Authentification/Auth";
 import { updateProfile } from "firebase/auth";
+import PopUpNotification from "../Components/PopUpNotification";
 
 
 export default function RegisterPage() {
@@ -22,6 +23,7 @@ export default function RegisterPage() {
   const [isRegistering, setIsRegistering] = React.useState(false);
   const [errorMessage, setErrorMessage] = React.useState('');
   const [fullName,setFullName] = React.useState('');
+  const [displayError,setDisplayError] = React.useState(false);
 
   const { userLoggedIn } = useAuth();
   const { setCurrentUser } = useAuth();
@@ -30,6 +32,19 @@ export default function RegisterPage() {
     document.body.style.overflow = "";
   else
     document.body.style.overflow = "hidden";
+
+    function getUserFriendlyError(error){
+      switch(error.code){
+        case "auth/invalid-email":
+          return "Invalid email.";
+        case "auth/wrong-password":
+          return "Incorrect password.";
+        case "auth/invalid-credential":
+          return "Incorrect password";
+        default:
+          return "Something went wrong...Please try again.";
+      }
+    }
 
   const onSubmit = async (e) => {
       e.preventDefault()
@@ -41,11 +56,13 @@ export default function RegisterPage() {
                 displayName: fullName
             });
             setCurrentUser(userCredential.user);
+            setDisplayError(false);
             navigation('/home');
         } catch (error) {
-            setErrorMessage(error.message);
+            setDisplayError(true);
+            setErrorMessage(getUserFriendlyError(error.message));
             setIsRegistering(false);
-            console.log(error.message);
+            console.log(error.code);
         }
       }
   }
@@ -68,11 +85,12 @@ export default function RegisterPage() {
     <div className="login-container">
       {userLoggedIn && <Navigate to="/dashboard/tasks" />}
       <img src={back} style={{width: 100 + '%', position: 'absolute'}}></img>
-      <form className="login-div" onSubmit={onSubmit}>
+      {displayError && <PopUpNotification error={errorMessage} role={'fail'}/>}
+      <form className="login-div" style={{paddingTop: (displayError ? 55 : 120) + 'px'}} onSubmit={onSubmit}>
         <img className="logo" src={logo}></img>
         <p className="title-login">Create your account</p>
         <div className="google-signin-div">
-          <button className="signin-with-google">
+          <button onClick={onGoogleSignIn} className="signin-with-google">
             <img src={google}  className="google-icon"></img>
             Sign in with Google
           </button>

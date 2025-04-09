@@ -4,6 +4,18 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+window.onerror = function (message, source, lineno, colno, error) {
+  return true;
+};
+
+window.addEventListener('error', function (e) {
+  console.error('Caught global error:', e.error || e.message);
+}, true);
+
+window.addEventListener('unhandledrejection', function (e) {
+  console.error('Unhandled Promise rejection:', e.reason);
+});
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

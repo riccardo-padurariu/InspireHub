@@ -6,8 +6,12 @@ import ToDoList from "../Components/ToDoList";
 import AddTaskModal from "../Components/AddTaskModal";
 import { Database, getDatabase } from "firebase/database";
 import { ref,get } from "firebase/database";
+import { useAuth } from "../Authentification/AuthContext";
+import PopUpNotification from "../Components/PopUpNotification";
 
 export default function ToDoListPage(props) {
+
+  const { userLoggedIn } = useAuth();
 
   const [taskList,setTaskList] = React.useState([]);
   const [isAdding,setIsAdding] = React.useState(false);
@@ -37,7 +41,7 @@ export default function ToDoListPage(props) {
     window.addEventListener('resize', function() {
       document.querySelector('.sidebar').style.height = window.innerHeight-255 + "px";
       document.querySelector('.todolist-container').style.height = window.innerHeight-h1 + "px";
-      document.querySelector('.features-dash').style.height = window.innerHeight-55 + "px";
+      document.querySelector('.features-dash').style.height = window.innerHeight-61 + "px";
       document.querySelector('.task-list-container').style.height = window.innerHeight-445 + "px";
     });
 
@@ -45,7 +49,7 @@ export default function ToDoListPage(props) {
     <div className="dashboard-container">
       <img className="back" src={back}></img>
       <Sidebar setNeedsOverFlow={props.setNeedsOverFlow} setPageSelector={setPageSelector} pageSelector={pageSelector}/>
-      <div className="features-dash"> 
+      <div className="features-dash" style={{ height: `${window.innerHeight-61}px`}}> 
         <Quote />
         <ToDoList
           taskList={taskList} 

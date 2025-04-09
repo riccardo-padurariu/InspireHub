@@ -40,14 +40,15 @@ export default function SettingsPage(props) {
 
     window.addEventListener('resize', function() {
       document.querySelector('.sidebar').style.height = window.innerHeight-255 + "px";
-      document.querySelector('.features-dash').style.height = window.innerHeight-55 + "px";
+      document.querySelector('.features-dash').style.height = window.innerHeight-61 + "px";
     });
 
 
     const styles = {
       display: 'flex',
       flexDirection: 'row',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      height: window.innerHeight - 61
     }
   
     const PStyle = {

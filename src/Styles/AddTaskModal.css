@@ -70,6 +70,7 @@
   border-radius: 10px;
   margin-bottom: 25px;
   margin-top: 3px;
+  font-family: Outfit;
 }
 
 .input-add-task-description::placeholder,
@@ -78,6 +79,17 @@
   font-size: 14px;
   font-weight: 400;
   color: #737373;
+}
+
+.stars{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px 0 10px 0;
+}
+
+.star{
+  cursor: pointer;
 }
 
 .input-add-task-description{
@@ -89,6 +101,11 @@
   align-self: start;
   margin-top: 3px;
   margin-bottom: 20px;
+  font-family: Outfit;
+}
+
+input{
+  font-family: Outfit;
 }
 
 .add-task-modal-button{

@@ -4,6 +4,7 @@ import ai from  '../Assets/mingcute_ai-fill.svg';
 import ChatBotMessage from "./ChatBotMessage";
 import ChatForm from "./ChatForm";
 import { doc } from "firebase/firestore";
+import AddFeedback from "./AddFeedback";
 
 export default function AiChatBot() {
 
@@ -45,7 +46,7 @@ export default function AiChatBot() {
   }
 
   window.addEventListener('resize',() => {
-    document.querySelector('.chatbot-container').style.height = window.innerHeight - 265 + 'px';
+    document.querySelector('.chatbot-container').style.height = window.innerHeight - 305 + 'px';
   })
 
   const standardHeight = 695;
@@ -58,18 +59,21 @@ export default function AiChatBot() {
   //})
 
   return(
-    <div className="chatbot-container" style={{height: `${window.innerHeight - 265}px`}}>
-      <div className="chat-body">
-        <div className="message bot-message">
-          <img className="ai-img-chatbot" src={ai}></img>
-          <p className="message-text">Hey there!How can I help you?</p>
+    <div>
+      <div className="chatbot-container" style={{height: `${window.innerHeight - 295}px`}}>
+        <div className="chat-body">
+          <div className="message bot-message">
+            <img className="ai-img-chatbot" src={ai}></img>
+            <p className="message-text">Hey there!How can I help you?</p>
+          </div>
+
+          {chatMessages}
+
         </div>
 
-        {chatMessages}
+        <ChatForm setChatHistory={setChatHistory} chatHistory={chatHistory} generateBotResponse={generateBotResponse}/>
 
       </div>
-
-      <ChatForm setChatHistory={setChatHistory} chatHistory={chatHistory} generateBotResponse={generateBotResponse}/>
     </div>
   );
 }
