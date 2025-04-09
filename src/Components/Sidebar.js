@@ -157,7 +157,7 @@ export default function Sidebar(props) {
           <p className="logout" onClick={() => { /*doSignOut().then(() => { window.location = '/login'; })*/ window.location = '/login'; doSignOut()}}>Logout</p>
         </div>
       </div>
-      <div className="sidebar">
+      <div className="sidebar" style={{height: `${window.innerHeight-255}px`}}>
         <div className="sections-dash">
           <div className="section-dash" style={window.location.pathname === '/dashboard/tasks' ? styleBoxSelected : styleBoxNormal} onClick={() => changePage('home')}>
             <img className="section-dash-img" src={window.location.pathname === '/dashboard/tasks' ? home : homeNormal}></img>

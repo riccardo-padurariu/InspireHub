@@ -3,6 +3,7 @@ import '../Styles/AiChatBot.css';
 import ai from  '../Assets/mingcute_ai-fill.svg';
 import ChatBotMessage from "./ChatBotMessage";
 import ChatForm from "./ChatForm";
+import { doc } from "firebase/firestore";
 
 export default function AiChatBot() {
 
@@ -47,8 +48,17 @@ export default function AiChatBot() {
     document.querySelector('.chatbot-container').style.height = window.innerHeight - 265 + 'px';
   })
 
+  const standardHeight = 695;
+  const maxHeight = 2780;
+
+  const portion = (maxHeight-standardHeight)/33;
+  
+  //window.addEventListener('resize',() => {
+    //document.querySelector('.chatbot-container').style.height = 67 +  window.innerHeight > standardHeight ? (window.innerHeight -standardHeight) / portion + '%' : '67%';
+  //})
+
   return(
-    <div className="chatbot-container">
+    <div className="chatbot-container" style={{height: `${window.innerHeight - 265}px`}}>
       <div className="chat-body">
         <div className="message bot-message">
           <img className="ai-img-chatbot" src={ai}></img>

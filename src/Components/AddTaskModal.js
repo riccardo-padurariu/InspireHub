@@ -15,14 +15,17 @@ export default function AddTaskModal(props) {
   const styleOnAdding = {
     backdropFilter: 'blur(10px)',
     zIndex: 1000,
-    position: 'relative',
-    marginLeft: '-1510px',
+    position: 'fixed',
+    //marginLeft: '-1510px',
+    left: 0,
     opacity: 1,
-    width: '1520px',
+    //width: '1520px',
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    width: '100%',
+    height: '100%'
   }
 
   const styleOnNormal = {
