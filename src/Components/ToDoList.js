@@ -79,7 +79,7 @@ export default function ToDoList(props) {
         <div className="header-list">
           <p className="section-todolist">Number</p>
           <p className="section-todolist">Goal Name</p>
-          <p className="section-todolist">Due Date</p>
+          <p className="section-todolist">Due Hour</p>
           <p className="section-todolist">Status</p>
         </div>
         {displayArr}

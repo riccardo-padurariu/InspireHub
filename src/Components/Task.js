@@ -1,7 +1,10 @@
 import React from "react";
 import '../Styles/Task.css'
+import arr from '../Assets/Arrow up-right.svg';
 
 export default function Task(props) {
+
+  const [isExtended,setIsExtended] = React.useState(false);
 
   function deleteTask() {
     const arr = props.taskList;
@@ -22,7 +25,8 @@ export default function Task(props) {
   }
 
   const completedStyle = {
-    padding: '7px 25px',
+    width: '105px',
+    padding: '7px 0px',
     fontFamily: 'Outfit',
     fontSize: '13px',
     backgroundColor: '#0DCB46',
@@ -35,7 +39,8 @@ export default function Task(props) {
   }
   
   const inProgressStyle = {
-    padding: '7px 25px',
+    width: '105px',
+    padding: '7px 0px',
     fontFamily: 'Outfit',
     fontSize: '13px',
     backgroundColor: '#244CA1',
@@ -63,18 +68,57 @@ export default function Task(props) {
     props.setCompletedList(newArrC);
   }
 
+  const styleInfosNormal = {
+    marginLeft: '-15px',
+    marginRight: '35px',
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  }
+
+  const styleInfoExtended = {
+    marginLeft: '100px',
+    marginRight: '35px',
+    flex: 1,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'start',
+    justifyContent: 'space-around',
+    gap: '5px'
+  }
+
+  const styleUserButtonsNormal = {};
+
+  const styleUserButtonsExtended = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '10px',
+  }
+
   return (
-    <div className="task-container">
-      <div className="task-info">
-        <p className="task-attribute">{props.index}</p>
-        <p className="task-attribute task-name">{props.name}</p>
-        <p className="task-attribute date">{props.dueDate}</p>
-        <p className="task-attribute">{props.isCompleted ? 'Completed' : 'In progress'}</p>
-      </div>
-      <div className="user-todolist-buttons">
-        <button className="complete-task-button" style={props.isCompleted ? completedStyle : inProgressStyle} onClick={props.isCompleted ? undoTask : completeTask}>{props.isCompleted ? 'Undo' : 'Complete'}</button>
-        <button className="edit-button" onClick={editTask}>Edit</button>
-        <button className="delete-button" onClick={deleteTask}>Delete</button>
+    <div className="task-main-div">
+      <div className="task-container">
+        <div style={{display: 'flex',flexDirection: 'column',alignItems: 'start',height: isExtended ? '108px' : ''}}>
+          <button onClick={() => setIsExtended(prev => !prev)} className="expand-task-button">
+            <img className="arr-task" style={{rotate: isExtended ? '' : '180deg'}} src={arr}></img>
+          </button>
+        </div>
+        <div className="task-info" style={isExtended ? styleInfoExtended : styleInfosNormal}>
+          <p className="task-attribute">{isExtended ? `Nr task: ${props.index}` : `${props.index}`}</p>
+          <p className="task-attribute task-name" style={{marginLeft: (isExtended ? 0 : 52) + 'px'}}>{isExtended ? `Task name: ${props.name}` : `${props.name}`}</p>
+          <p className="task-attribute date" style={{marginLeft: (isExtended ? 0 : 10) + 'px'}}>{isExtended ? `Due hour: ${props.dueDate}` : `${props.dueDate}`}</p>
+          {isExtended && <p className="task-attribute">{`Task description: ${props.description}`}</p>}
+          <p className="task-attribute">{isExtended ? `Task status: ${props.isCompleted ? 'Completed' : 'In progress'}` : props.isCompleted ? 'Completed' : 'In progress'}</p>
+        </div>
+        <div className="user-todolist-buttons" style={isExtended ? styleUserButtonsExtended : styleUserButtonsNormal}>
+          <button className="complete-task-button" style={props.isCompleted ? completedStyle : inProgressStyle} onClick={props.isCompleted ? undoTask : completeTask}>{props.isCompleted ? 'Undo' : 'Complete'}</button>
+          <button className="edit-button" onClick={editTask}>Edit</button>
+          <button className="delete-button" style={{marginRight: '3px'}} onClick={deleteTask}>Delete</button>
+        </div>
       </div>
     </div>
   );

@@ -5,10 +5,23 @@ import ChatBotMessage from "./ChatBotMessage";
 import ChatForm from "./ChatForm";
 import { doc } from "firebase/firestore";
 import AddFeedback from "./AddFeedback";
+import { useEffect,useRef } from 'react';
+import { aiInfo } from "../AIInfo";
 
 export default function AiChatBot() {
 
-  const [chatHistory,setChatHistory] = React.useState([]);
+  const [chatHistory,setChatHistory] = React.useState([{
+    hideInChat: true,
+    role: 'model',
+    text: aiInfo
+  }]);
+  const chatBodyRef = useRef(null);
+
+  useEffect(() => {
+    if (chatBodyRef.current) {
+      chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+    }
+  }, [chatHistory]);
 
   const chatMessages = chatHistory.map((chat, index) => 
     <ChatBotMessage key={index} chat={chat} />
@@ -46,7 +59,7 @@ export default function AiChatBot() {
   }
 
   window.addEventListener('resize',() => {
-    document.querySelector('.chatbot-container').style.height = window.innerHeight - 305 + 'px';
+    document.querySelector('.chatbot-container').style.height = window.innerHeight - 315 + 'px';
   })
 
   const standardHeight = 695;
@@ -58,10 +71,20 @@ export default function AiChatBot() {
     //document.querySelector('.chatbot-container').style.height = 67 +  window.innerHeight > standardHeight ? (window.innerHeight -standardHeight) / portion + '%' : '67%';
   //})
 
+  //var objDiv = document.querySelector('.chat-body');
+  //console.log(objDiv);
+  //bjDiv.scrollTop = window.innerHeight - 315;
+
+  //const bottomRef = useRef(null);
+
+  //useEffect(() => {
+    //bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  //}, []);
+
   return(
     <div>
-      <div className="chatbot-container" style={{height: `${window.innerHeight - 295}px`}}>
-        <div className="chat-body">
+      <div className="chatbot-container" style={{height: `${window.innerHeight - 315}px`}}>
+        <div ref={chatBodyRef} className="chat-body">
           <div className="message bot-message">
             <img className="ai-img-chatbot" src={ai}></img>
             <p className="message-text">Hey there!How can I help you?</p>

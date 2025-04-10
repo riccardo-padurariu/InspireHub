@@ -11,29 +11,44 @@
   margin-top: 5px;
 }
 
-.task-info{
-  margin-left: 5px;
+.expand-task-button{
+  background-color: transparent;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.arr-task{
+  margin-top: 2px;
+  width: 24px;
+  height: 24px;
+}
+
+/*.task-info{
+  margin-left: -15px;
+  margin-right: 35px;
   flex: 1;  
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-}
+}*/
 
 .task-attribute{
   margin: 0;
 }
 
-.date{
+/*.date{
   margin-left: 10px;
-}
+}*/
 
-.task-name{
+/*.task-name{
   margin-left: 52px;
-}
+}*/
 
 .edit-button{
-  padding: 7px 25px;
+  width: 105px;
+  padding: 7px 0px;
   font-family: Outfit;
   font-size: 13px;
   background-color: #244CA1;
@@ -45,7 +60,8 @@
 }
 
 .delete-button{
-  padding: 7px 25px;
+  width: 105px;
+  padding: 7px 0px;
   font-family: Outfit;
   font-size: 13px;
   font-weight: 600;

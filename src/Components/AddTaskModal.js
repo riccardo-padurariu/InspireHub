@@ -113,8 +113,8 @@ export default function AddTaskModal(props) {
               <input className="input-add-task-description desc" type="text" placeholder="Set your goal description" value={props.taskDescription} onChange={(e) => props.setTaskDescription(e.target.value)}></input>
             </div>
             <div className="add-task-input-div">
-              <p className="label-add-task">Due Date</p>
-              <input className="input-add-task date" type="date" value={props.taskDate} onChange={(e) => props.setTaskDate(e.target.value)}></input>
+              <p className="label-add-task">Due Hour</p>
+              <input className="input-add-task date" type="time" value={props.taskDate} onChange={(e) => props.setTaskDate(e.target.value)}></input>
             </div>
             <button className="add-task-modal-button" onClick={props.isEditing ? editTaskModal : addTask}>{props.isEditing ? "EDIT TASK" : "ADD TASK"}</button>
           </div>

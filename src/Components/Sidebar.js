@@ -81,8 +81,25 @@ export default function Sidebar(props) {
     border:'none',
     borderRadius: '6px',
     cursor: 'pointer',
-    marginTop: '5px'
+    marginTop: '5px',
   }
+
+  const styleAi = {
+    padding: '3px 13px',
+    width: '211px',
+    height: '40px',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    border:'none',
+    borderRadius: '6px',
+    cursor: 'pointer',
+    marginTop: '5px',
+    border: '1px solid',
+    borderColor: 'white'
+  }
+
+  console.log(styleBoxNormal);
 
   const styleBoxSelected = {
     padding: '3px 13px',
@@ -97,6 +114,7 @@ export default function Sidebar(props) {
     background: 'linear-gradient(90deg, rgba(190, 49, 68, 0) 0%, #872341 75%)',
     borderColor: '#872341',
     marginTop: '5px'
+
   }
 
   const stylePNormal = {
@@ -173,9 +191,9 @@ export default function Sidebar(props) {
           </div>
         </div>
         <div className="AI-settings">
-          <div className="section-dash-ai" style={styleBoxNormal} onClick={() => changePage('ai-chatbot')}>
-            <img className="section-dash-img" src={window.location.pathname === '/dashboard/ai' ? ai : aiNormal}></img>
-            <p className="section-p" style={window.location.pathname === '/dashboard/ai' ? stylePSelected : stylePNormal}>AI Chatbot</p>
+          <div className="section-dash-ai" style={window.location.pathname === '/dashboard/ai' ? styleAi : styleBoxNormal} onClick={() => changePage('ai-chatbot')}>
+            <img className="section-dash-img" src={ai}></img>
+            <p className="section-p" style={stylePSelected}>AI Chatbot</p>
           </div>
           <div className="section-dash" style={window.location.pathname === '/dashboard/settings' ? styleBoxSelected : styleBoxNormal} onClick={() => changePage('settings')}>
             <img className="section-dash-img" src={window.location.pathname === '/dashboard/settings' ? settNormal : sett}></img>

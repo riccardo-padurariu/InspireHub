@@ -37,7 +37,7 @@ export default function AiPage(props){
 
   window.addEventListener('resize', function() {
     document.querySelector('.sidebar').style.height = window.innerHeight-255 + "px";
-    document.querySelector('.features-dash').style.height = window.innerHeight-55 + "px";
+    document.querySelector('.features-dash').style.height = window.innerHeight-61 + "px";
   });
   
   console.log(isAddingFeedback);
@@ -47,7 +47,7 @@ export default function AiPage(props){
       <div className="dashboard-container">
         <img className="back" src={back}></img>
         <Sidebar setNeedsOverFlow={props.setNeedsOverFlow} setPageSelector={setPageSelector} pageSelector={pageSelector}/>
-        <div className="features-dash">
+        <div className="features-dash" style={{height: window.innerHeight-61 + "px"}}>
           <AiIntro setIsAddingFeedback={setIsAddingFeedback} />
           <AiChatBot />
         </div>
